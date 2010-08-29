@@ -18,15 +18,11 @@ function Estrela(raio){
 		return cor;
 	}
 	
-	this.desenhar_no = function(context,x,y){
+	this.se_desenhar = function(context,x,y){
 		context.strokeStyle = cor;
 		context.beginPath();
 		context.arc(x,y,raio,0,Math.PI*2,true);
 		context.stroke();
 		context.closePath();
-	}
-	
-	this.getRaio = function(){
-		return raio;
 	}
 }

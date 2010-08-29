@@ -1,5 +1,6 @@
 function Canvas(id){
-	var estrela = new Estrela(15);
+	var historicoCursor = [];
+	var constelacao = new Constelacao(30);
 	var elem = document.getElementById(id);
 	var mouseX = 0;
 	var mouseY = 0;
@@ -9,8 +10,14 @@ function Canvas(id){
 	this.atualizar = function(mX,mY){
 		mouseX = mX - 8;
 		mouseY = mY - 3;
+		historicoCursor.reverse();
+		coordenada = [];
+		coordenada['x'] = mouseX;
+		coordenada['y'] = mouseY;
+		historicoCursor.push(coordenada);
+		historicoCursor.reverse();
 		context.clearRect(0,0,elem.width,elem.height);
 		
-		estrela.desenhar_no(context,mouseX,mouseY);
+		constelacao.se_desenhar(context,historicoCursor);
 	}
 }
