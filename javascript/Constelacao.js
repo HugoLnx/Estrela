@@ -13,8 +13,10 @@ function Constelacao(raio){
 				proxEstrela = estrelas[i+1];
 				if (proxEstrela == undefined){
 					estrela.setPosicao(mouseX,mouseY);
+					estrela.trocarCor();
 				} else {
 					estrela.copiarPosicao(proxEstrela);
+					estrela.copiarCor(proxEstrela);
 				}
 			}
 			estrela.se_desenhar(context);

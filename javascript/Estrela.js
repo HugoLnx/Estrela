@@ -2,9 +2,9 @@ function Estrela(r,x_inicial,y_inicial){
 	var x = x_inicial;
 	var y = y_inicial;
 	var raio = r;
-	var cor = randomizar_cor();
+	var cor = randomizarCor();
 	
-	function randomizar_cor(){
+	function randomizarCor(){
 		var cor = '#'
 		var qnt_f = 0;
 		var qnt_zero = 0;
@@ -33,6 +33,10 @@ function Estrela(r,x_inicial,y_inicial){
 		y = estrela.getY();
 	}
 	
+	this.copiarCor = function(estrela){
+		cor = estrela.getCor();
+	}
+	
 	this.setPosicao = function(novoX,novoY){
 		x = novoX;
 		y = novoY;
@@ -46,6 +50,10 @@ function Estrela(r,x_inicial,y_inicial){
 		return y;
 	}
 	
+	this.getCor = function(){
+		return cor;
+	}
+	
 	this.setX = function(novoX){
 		x = novoX;
 	}
@@ -53,4 +61,13 @@ function Estrela(r,x_inicial,y_inicial){
 	this.setY = function(novoY){
 		y = novoY;
 	}
+	
+	this.setCor = function(novaCor){
+		cor = novaCor;
+	}
+	
+	this.trocarCor = function(){
+		cor = randomizarCor();
+	}
+
 }
