@@ -10,10 +10,10 @@ function Canvas(id){
 	this.atualizar = function(mX,mY){
 		mouseX = mX - 8;
 		mouseY = mY - 3;
-		historicoCursor.reverse();
 		coordenada = [];
 		coordenada['x'] = mouseX;
 		coordenada['y'] = mouseY;
+		historicoCursor.reverse();
 		historicoCursor.push(coordenada);
 		historicoCursor.reverse();
 		context.clearRect(0,0,elem.width,elem.height);
