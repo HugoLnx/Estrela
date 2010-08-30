@@ -8,16 +8,10 @@ function Canvas(id){
 	context.lineWidth = 4;
 	
 	this.atualizar = function(mX,mY){
+		context.clearRect(0,0,elem.width,elem.height);
+	
 		mouseX = mX - 8;
 		mouseY = mY - 3;
-		coordenada = [];
-		coordenada['x'] = mouseX;
-		coordenada['y'] = mouseY;
-		historicoCursor.reverse();
-		historicoCursor.push(coordenada);
-		historicoCursor.reverse();
-		context.clearRect(0,0,elem.width,elem.height);
-		
-		constelacao.se_desenhar(context,historicoCursor);
+		constelacao.se_desenhar(context,mouseX,mouseY);
 	}
 }

@@ -2,19 +2,22 @@ function Constelacao(raio){
 	var raio_maior = raio;
 	var estrelas = [];
 	
-	this.se_desenhar = function(context,historicoCursor){
+	this.se_desenhar = function(context,mouseX,mouseY){
 
-		for (var i = 0; i < historicoCursor.length && i <= raio_maior; i++){
+		for (var i = 0;i <= raio_maior; i++){
 			if (estrelas[i] == undefined){
-				estrela = new Estrela(raio_maior-i);
+				estrela = new Estrela(i,mouseX,mouseY);
 				estrelas.push(estrela);
 			} else {
 				estrela = estrelas[i];
+				proxEstrela = estrelas[i+1];
+				if (proxEstrela == undefined){
+					estrela.setPosicao(mouseX,mouseY);
+				} else {
+					estrela.copiarPosicao(proxEstrela);
+				}
 			}
-
-			x = historicoCursor[i]['x'];
-			y = historicoCursor[i]['y'];
-			estrela.se_desenhar(context,x,y);
+			estrela.se_desenhar(context);
 		}
 	}
 
