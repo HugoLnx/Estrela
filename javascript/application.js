@@ -2,7 +2,7 @@ var canvas;
 
 function init(){
 	document.onmousemove = onCanvasMouseMove;
-	canvas = new Canvas('pingos');
+	canvas = new Canvas('estrelas');
 }
 
 function onCanvasMouseMove(e){
