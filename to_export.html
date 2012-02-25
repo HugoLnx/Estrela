@@ -1,0 +1,36 @@
+<html>
+	<head>
+    <script type="text/javascript">
+      var SCRIPTS = ["Estrela","Constelacao","Canvas","application"];
+
+      function bindJsScript(path_or_script,isScript){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        if(isScript===undefined) script.src = path_or_script;
+        else script.text = path_or_script;
+        document.body.appendChild(script);
+      }
+
+      function bindLink(path){
+        var link = document.createElement("link");
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.href = path;
+        document.head.appendChild(link);
+      }
+
+
+      function loadScriptsDinamically() {
+        var path = document.location.search.slice(1);
+        for(var i in SCRIPTS){
+          bindJsScript(path + "javascript/"+SCRIPTS[i]+".js");
+        }
+        bindLink(path + "css/style.css");
+        setTimeout(function(){bindJsScript("init();",true)},500);
+      }
+    </script>
+	</head>
+	<body onload="loadScriptsDinamically()">
+		<canvas id="estrelas" width="400" height="400"></canvas>
+	</body>
+</html>
