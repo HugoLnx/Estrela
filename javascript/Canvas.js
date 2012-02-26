@@ -10,8 +10,8 @@ function Canvas(id){
 	this.atualizar = function(mX,mY){
 		context.clearRect(0,0,elem.width,elem.height);
 	
-		mouseX = mX - 8;
-		mouseY = mY - 3;
+		mouseX = mX - elem.offsetLeft;
+		mouseY = mY - elem.offsetTop;
 		constelacao.se_desenhar(context,mouseX,mouseY);
 	}
 }
