@@ -6,12 +6,33 @@ function Canvas(id){
 	var mouseY = 0;
 	var context = elem.getContext('2d');
 	context.lineWidth = 4;
-	
+
+  function desenharTextoInformativo(){
+		context.beginPath();context.closePath();
+    context.save();
+    context.font = '30px arial';
+    context.fillStyle = "rgba(255,255,255,0.1)";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    var text = "< Hover Here >";
+    context.fillText(text,(elem.width/2),(elem.height/2));
+    context.fill();
+    context.restore();
+  }
+  desenharTextoInformativo();
+
 	this.atualizar = function(mX,mY){
 		context.clearRect(0,0,elem.width,elem.height);
 	
 		mouseX = mX - elem.offsetLeft;
 		mouseY = mY - elem.offsetTop;
-		constelacao.se_desenhar(context,mouseX,mouseY);
+    constelacao.se_desenhar(context,mouseX,mouseY);
+    if (!this.estaDentro(mX,mY))
+      desenharTextoInformativo();
 	}
+
+  this.estaDentro = function(x,y) {
+    return (x > elem.offsetLeft && x<elem.offsetLeft+elem.width &&
+            y > elem.offsetTop && y<elem.offsetTop+elem.height)
+  }
 }
