@@ -4,12 +4,12 @@ function Estrela(r,x_inicial,y_inicial,cor){
 	var raio = r;
 	var cor = cor;
   var layers = [
-    {alpha: 0.1,expessure:0.3},
-    {alpha: 0.3,expessure:0.1},
-    {alpha: 0.4,expessure:0.1},
-    {alpha: 0.7,expessure:0.1},
-    {alpha: 0.8,expessure:0.1},
-    {alpha: 1,expessure:0.3}
+    {alpha: 0.01,expessure:0.5},
+    {alpha: 0.02,expessure:0.1},
+    {alpha: 0.04,expessure:0.1},
+    {alpha: 0.06,expessure:0.1},
+    {alpha: 0.1,expessure:0.1},
+    {alpha: 1,expessure:0.1}
   ];
 	
 	function stringCorComTransparencia(alpha){

@@ -1,7 +1,7 @@
 function Constelacao(raio){
 	var raio_maior = raio;
 	var estrelas = [];
-  var distanciaMax = 5;
+  var distanciaMax = 3;
 
   trocarCorPeriodicamente();
   function trocarCorPeriodicamente() {
