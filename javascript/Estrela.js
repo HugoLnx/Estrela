@@ -1,8 +1,8 @@
-function Estrela(r,x_inicial,y_inicial){
+function Estrela(r,x_inicial,y_inicial,cor){
 	var x = x_inicial;
 	var y = y_inicial;
 	var raio = r;
-	var cor = randomizarCor();
+	var cor = cor;
   var layers = [
     {alpha: 0.1,expessure:0.3},
     {alpha: 0.3,expessure:0.1},
@@ -11,22 +11,6 @@ function Estrela(r,x_inicial,y_inicial){
     {alpha: 0.8,expessure:0.1},
     {alpha: 1,expessure:0.3}
   ];
-	
-	function randomizarCor(){
-		cor = [];
-		qnt_f = 0;
-		qnt_zero = 0;
-		for (var i=0;i<3;i+=1){
-			if ((qnt_f != 2 && Math.floor(Math.random()*10) % 2 == 0) || qnt_zero == 2){
-				cor.push(255);
-				qnt_f += 1;
-			} else {
-				cor.push(0);
-				qnt_zero += 1;
-			}
-		}
-		return cor;
-	}
 	
 	function stringCorComTransparencia(alpha){
 		return "rgba("+cor[0]+","+cor[1]+","+cor[2]+","+alpha+")";
@@ -63,7 +47,7 @@ function Estrela(r,x_inicial,y_inicial){
     var xn = x2-x;
     var yn = y2-y;
     var yr = ((distancia-0.1)*yn)/Math.sqrt(xn*xn+yn*yn);
-    if (yr*xn === 0 && yn === 0) // TODO
+    if (yn === 0)
       var xr = 0;
     else var xr = (yr*xn)/yn;
     return {x:x+xr, y:y+yr};
@@ -100,10 +84,6 @@ function Estrela(r,x_inicial,y_inicial){
 	
 	this.setCor = function(novaCor){
 		cor = novaCor;
-	}
-	
-	this.trocarCor = function(){
-		cor = randomizarCor();
 	}
 
 }
