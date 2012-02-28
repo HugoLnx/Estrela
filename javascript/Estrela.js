@@ -2,6 +2,7 @@ function Estrela(r,x_inicial,y_inicial){
 	var x = x_inicial;
 	var y = y_inicial;
 	var raio = r;
+  this.raio = raio;
 	var cor = randomizarCor();
 	
 	function randomizarCor(){
@@ -47,6 +48,10 @@ function Estrela(r,x_inicial,y_inicial){
 		x = estrela.getX();
 		y = estrela.getY();
 	}
+
+  this.distanciaPara = function(estrela){
+    return Math.sqrt(Math.pow(estrela.getX()-x,2)+Math.pow(estrela.getY()-y,2));
+  }
 	
 	this.copiarCor = function(estrela){
 		cor = estrela.getCor();
