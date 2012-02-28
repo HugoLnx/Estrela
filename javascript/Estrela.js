@@ -2,8 +2,15 @@ function Estrela(r,x_inicial,y_inicial){
 	var x = x_inicial;
 	var y = y_inicial;
 	var raio = r;
-  this.raio = raio;
 	var cor = randomizarCor();
+  var layers = [
+    {alpha: 0.1,expessure:0.3},
+    {alpha: 0.3,expessure:0.1},
+    {alpha: 0.4,expessure:0.1},
+    {alpha: 0.7,expessure:0.1},
+    {alpha: 0.8,expessure:0.1},
+    {alpha: 1,expessure:0.3}
+  ];
 	
 	function randomizarCor(){
 		cor = [];
@@ -26,22 +33,21 @@ function Estrela(r,x_inicial,y_inicial){
 	}
 	
 	this.se_desenhar = function(context){
-		for (var i = 1; i <= raio; i++){
-			if (i < raio * 0.1)
-				var alpha = 1
-			else if (i < raio * 0.333)
-				var alpha = 0.3
-			else if (i < raio * 0.5)
-				var alpha = 0.3
-			else
-				var alpha = 0.1
+    var raioRenderizacao = raio;
+    var expessureSum = 0;
+    for(var i in layers) {
+      var layer = layers[i];
 
-			context.fillStyle = stringCorComTransparencia(alpha);
+			context.fillStyle = stringCorComTransparencia(layer.alpha);
 			context.beginPath();
-			context.arc(x,y,i,0,Math.PI*2,true);
+      expessureSum += layer.expessure;
+      while(raioRenderizacao > raio*(1-expessureSum)){
+			  context.arc(x,y,raioRenderizacao,0,Math.PI*2,true);
+        raioRenderizacao -= 1;
+      }
 			context.closePath();
 			context.fill();
-		}
+    }
 	}
 	
 	this.copiarPosicao = function(estrela){

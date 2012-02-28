@@ -1,7 +1,7 @@
 function Constelacao(raio){
 	var raio_maior = raio;
 	var estrelas = [];
-  var distanciaMax = 5;
+  var distanciaMax = 10;
 	
 	this.se_desenhar = function(context,mouseX,mouseY){
 		for (var i = 0;i <= raio_maior; i++){
