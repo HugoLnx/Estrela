@@ -49,8 +49,18 @@ function Estrela(r,x_inicial,y_inicial){
 		y = estrela.getY();
 	}
 
-  this.distanciaPara = function(estrela){
-    return Math.sqrt(Math.pow(estrela.getX()-x,2)+Math.pow(estrela.getY()-y,2));
+  this.distanciaPara = function(x2,y2){
+    return Math.sqrt(Math.pow(x2-x,2)+Math.pow(y2-y,2));
+  }
+
+  this.posicaoQuandoDistarDe = function(distancia,x2,y2) {
+    var xn = x2-x;
+    var yn = y2-y;
+    var yr = ((distancia-0.1)*yn)/Math.sqrt(xn*xn+yn*yn);
+    if (yr*xn === 0 && yn === 0) // TODO
+      var xr = 0;
+    else var xr = (yr*xn)/yn;
+    return {x:x+xr, y:y+yr};
   }
 	
 	this.copiarCor = function(estrela){
