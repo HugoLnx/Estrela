@@ -1,7 +1,7 @@
 function Constelacao(raio){
 	var raio_maior = raio;
 	var estrelas = [];
-  var distanciaMax = 10;
+  var distanciaMax = 5;
 
   trocarCorPeriodicamente();
   function trocarCorPeriodicamente() {
@@ -9,28 +9,48 @@ function Constelacao(raio){
     setTimeout(trocarCorPeriodicamente,randomizarTempo());
   }
 
+  var mudandoDeCor = false;
+  var frameInicial = null;
+
 	this.se_desenhar = function(context,mouseX,mouseY){
 		for (var i = 0;i <= raio_maior; i++){
-			if (estrelas[i] == undefined){
-				var estrela = new Estrela(i,mouseX,mouseY,cor);
+		  var estrela = estrelas[i];
+			if (estrela == undefined){
+				var estrela = new Estrela(raio_maior-i,mouseX,mouseY,cor);
 				estrelas.push(estrela);
 			} else {
-				var estrela = estrelas[i];
-				var proxEstrela = estrelas[i+1];
-				if (proxEstrela == undefined){
+				var anteEstrela = estrelas[i-1];
+				if (!anteEstrela){
 					estrela.setPosicao(mouseX,mouseY);
 					estrela.setCor(cor);
+          mudandoDeCor=true;
 				} else {
-          estrela.copiarCor(proxEstrela);
-          if(proxEstrela && proxEstrela.distanciaPara(estrela.getX(),estrela.getY()) > distanciaMax) {
-            var pos = proxEstrela.posicaoQuandoDistarDe(distanciaMax,estrela.getX(),estrela.getY());
+          if(anteEstrela.distanciaPara(estrela.getX(),estrela.getY()) > distanciaMax) {
+            var pos = anteEstrela.posicaoQuandoDistarDe(distanciaMax,estrela.getX(),estrela.getY());
             estrela.setPosicao(pos.x,pos.y);
-          } else 
-            estrela.copiarPosicao(proxEstrela);
+          } else {
+            estrela.copiarPosicao(anteEstrela);
+          }
 				}
 			}
-			estrela.se_desenhar(context);
 		}
+
+    if(mudandoDeCor){
+      if (!frameInicial) frameInicial = frame;
+      var i = (frame - frameInicial)+1;
+      var estrela = estrelas[i];
+      var anteEstrela = estrelas[i-1];
+      estrela.copiarCor(anteEstrela);
+      if(i>=estrelas.length-1){
+        mudandoDeCor=false;
+        frameInicial=null;
+      }
+    }
+
+    for (var i = 0; i < estrelas.length;i++){
+      var estrela = estrelas[i];
+			estrela.se_desenhar(context);
+    }
 	}
 
   function randomizarTempo() {

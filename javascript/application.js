@@ -1,5 +1,6 @@
 var canvas;
 var mouseEvent;
+var frame = 0;
 
 function init(){
 	document.onmousemove = guardarMouseEvent;
@@ -12,6 +13,7 @@ function guardarMouseEvent(e){
 }
 
 function atualizarEstrela(){
+  frame++;
 	if (mouseEvent != undefined)
 		canvas.atualizar(mouseEvent.pageX,mouseEvent.pageY);
 }
