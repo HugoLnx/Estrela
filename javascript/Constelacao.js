@@ -12,7 +12,7 @@ function Constelacao(raio){
   var mudandoDeCor = false;
   var frameInicial = null;
 
-	this.se_desenhar = function(context,mouseX,mouseY){
+	this.update = function(mouseX,mouseY){
 		for (var i = 0;i <= raio_maior; i++){
 		  var estrela = estrelas[i];
 			if (estrela == undefined){
@@ -46,11 +46,6 @@ function Constelacao(raio){
         frameInicial=null;
       }
     }
-
-    for (var i = 0; i < estrelas.length;i++){
-      var estrela = estrelas[i];
-			estrela.se_desenhar(context);
-    }
 	}
 
   function randomizarTempo() {
@@ -72,4 +67,8 @@ function Constelacao(raio){
 		}
 		return cor;
 	}
+
+  this.estrelas = function() {
+    return estrelas;
+  }
 }

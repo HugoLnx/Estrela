@@ -3,36 +3,6 @@ function Estrela(r,x_inicial,y_inicial,cor){
 	var y = y_inicial;
 	var raio = r;
 	var cor = cor;
-  var layers = [
-    {alpha: 0.01,expessure:0.5},
-    {alpha: 0.02,expessure:0.1},
-    {alpha: 0.04,expessure:0.1},
-    {alpha: 0.06,expessure:0.1},
-    {alpha: 0.1,expessure:0.1},
-    {alpha: 1,expessure:0.1}
-  ];
-	
-	function stringCorComTransparencia(alpha){
-		return "rgba("+cor[0]+","+cor[1]+","+cor[2]+","+alpha+")";
-	}
-	
-	this.se_desenhar = function(context){
-    var raioRenderizacao = raio;
-    var expessureSum = 0;
-    for(var i in layers) {
-      var layer = layers[i];
-
-			context.fillStyle = stringCorComTransparencia(layer.alpha);
-			context.beginPath();
-      expessureSum += layer.expessure;
-      while(raioRenderizacao > raio*(1-expessureSum)){
-			  context.arc(x,y,raioRenderizacao,0,Math.PI*2,true);
-        raioRenderizacao -= 1;
-      }
-			context.closePath();
-			context.fill();
-    }
-	}
 	
 	this.copiarPosicao = function(estrela){
 		x = estrela.getX();
@@ -86,4 +56,19 @@ function Estrela(r,x_inicial,y_inicial,cor){
 		cor = novaCor;
 	}
 
+  this.raio = function() {
+    return raio;
+  }
+
+  this.cor = function() {
+    return cor;
+  }
+
+  this.x = function() {
+    return x;
+  }
+
+  this.y = function() {
+    return y;
+  }
 }

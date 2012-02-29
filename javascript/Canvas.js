@@ -26,7 +26,9 @@ function Canvas(id){
 	
 		mouseX = mX - elem.offsetLeft;
 		mouseY = mY - elem.offsetTop;
-    constelacao.se_desenhar(context,mouseX,mouseY);
+    constelacao.update(mouseX,mouseY);
+    var painter = new ConstellationPainter(constelacao);
+    painter.paintOn(context);
     if (!this.estaDentro(mX,mY))
       desenharTextoInformativo();
 	}
@@ -35,4 +37,8 @@ function Canvas(id){
     return (x > elem.offsetLeft && x<elem.offsetLeft+elem.width &&
             y > elem.offsetTop && y<elem.offsetTop+elem.height)
   }
+	
+	Canvas.stringRGBA = function(red,green,blue,alpha){
+		return "rgba("+red+","+green+","+blue+","+alpha+")";
+	}
 }
