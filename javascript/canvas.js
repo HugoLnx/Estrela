@@ -26,9 +26,9 @@ function Canvas(id){
 	
 		mouseX = mX - elem.offsetLeft;
 		mouseY = mY - elem.offsetTop;
-    constelacao.update(mouseX,mouseY);
-    var painter = new ConstellationPainter(constelacao);
-    painter.paintOn(context);
+    constelacao.atualizar(mouseX,mouseY);
+    var pintor = new PintorDeConstelacao(constelacao);
+    pintor.pintarEm(context);
     if (!this.estaDentro(mX,mY))
       desenharTextoInformativo();
 	}

@@ -12,7 +12,7 @@ function Constelacao(raio){
   var mudandoDeCor = false;
   var frameInicial = null;
 
-	this.update = function(mouseX,mouseY){
+	this.atualizar = function(mouseX,mouseY){
 		for (var i = 0;i <= raio_maior; i++){
 		  var estrela = estrelas[i];
 			if (estrela == undefined){
