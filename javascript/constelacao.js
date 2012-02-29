@@ -22,11 +22,11 @@ function Constelacao(raio){
 				var anteEstrela = estrelas[i-1];
 				if (!anteEstrela){
 					estrela.setPosicao(mouseX,mouseY);
-					estrela.setCor(cor);
+					estrela.cor(cor);
           mudandoDeCor=true;
 				} else {
-          if(anteEstrela.distanciaPara(estrela.getX(),estrela.getY()) > distanciaMax) {
-            var pos = anteEstrela.posicaoQuandoDistarDe(distanciaMax,estrela.getX(),estrela.getY());
+          if(anteEstrela.distanciaPara(estrela.x(),estrela.y()) > distanciaMax) {
+            var pos = anteEstrela.posicaoQuandoDistarDe(distanciaMax,estrela.x(),estrela.y());
             estrela.setPosicao(pos.x,pos.y);
           } else {
             estrela.copiarPosicao(anteEstrela);

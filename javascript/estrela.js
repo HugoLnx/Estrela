@@ -5,8 +5,8 @@ function Estrela(r,x_inicial,y_inicial,cor){
 	var cor = cor;
 	
 	this.copiarPosicao = function(estrela){
-		x = estrela.getX();
-		y = estrela.getY();
+		x = estrela.x();
+		y = estrela.y();
 	}
 
   this.distanciaPara = function(x2,y2){
@@ -24,7 +24,7 @@ function Estrela(r,x_inicial,y_inicial,cor){
   }
 	
 	this.copiarCor = function(estrela){
-		cor = estrela.getCor();
+		cor = estrela.cor();
 	}
 	
 	this.setPosicao = function(novoX,novoY){
@@ -32,36 +32,13 @@ function Estrela(r,x_inicial,y_inicial,cor){
 		y = novoY;
 	}
 	
-	this.getX = function(){
-		return x;
-	}
-	
-	this.getY = function(){
-		return y;
-	}
-	
-	this.getCor = function(){
-		return cor;
-	}
-	
-	this.setX = function(novoX){
-		x = novoX;
-	}
-	
-	this.setY = function(novoY){
-		y = novoY;
-	}
-	
-	this.setCor = function(novaCor){
-		cor = novaCor;
-	}
-
   this.raio = function() {
     return raio;
   }
 
-  this.cor = function() {
-    return cor;
+  this.cor = function(novaCor) {
+    if(novaCor) cor = novaCor;
+    else return cor;
   }
 
   this.x = function() {
