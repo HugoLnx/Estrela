@@ -22,8 +22,10 @@ function Constelacao(raio){
 				var anteEstrela = estrelas[i-1];
 				if (!anteEstrela){
 					estrela.setPosicao(mouseX,mouseY);
-					estrela.cor(cor);
-          mudandoDeCor=true;
+          if (estrela.cor().join() !== cor.join()){
+            estrela.cor(cor);
+            mudandoDeCor=true;
+          }
 				} else {
           if(anteEstrela.distanciaPara(estrela.x(),estrela.y()) > distanciaMax) {
             var pos = anteEstrela.posicaoQuandoDistarDe(distanciaMax,estrela.x(),estrela.y());
