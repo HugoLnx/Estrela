@@ -1,10 +1,12 @@
 function PintorDeConstelacao(constelacao) {
   var constelacao = constelacao;
   var camadas = [
-    {alpha: 0.01,expessure:0.5},
+    {alpha: 0,expessure:0.3},
+    {alpha: 0.01,expessure:0.2},
     {alpha: 0.02,expessure:0.1},
-    {alpha: 0.04,expessure:0.1},
-    {alpha: 0.06,expessure:0.1},
+    {alpha: 0.03,expessure:0.1},
+    {alpha: 0.06,expessure:0.05},
+    {alpha: 0.07,expessure:0.05},
     {alpha: 0.1,expessure:0.1},
     {alpha: 1,expessure:0.1}
   ];
