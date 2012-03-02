@@ -1,48 +1,34 @@
 function Canvas(id){
 	var constelacao = new Constelacao(30);
 	var elem = document.getElementById(id);
+  var texto = new TextoInformativo('Hover Here',elem.width/2,elem.height/2);
 	var mouseX = 0;
 	var mouseY = 0;
 	var context = elem.getContext('2d');
 	context.lineWidth = 4;
-  desenharTextoInformativo();
-  var textoInformativoNaTela=true;
 
-  function desenharTextoInformativo(){
-		context.beginPath();context.closePath();
-    context.save();
-    context.font = '30px arial';
-    context.fillStyle = "rgba(255,255,255,0.1)";
-    context.textAlign = "center";
-    context.textBaseline = "middle";
-    var text = "< Hover Here >";
-    context.fillText(text,(elem.width/2),(elem.height/2));
-    context.fill();
-    context.restore();
-  }
-
-  function apagarTextoInformativo() {
-    context.clearRect(0,0,elem.width,elem.height);
-  };
+  texto.visivel(true);
+  var pintor = new PintorDeTextoInformativo(texto);
+  pintor.pintarEm(context);
 
 	this.atualizar = function(mX,mY){
-    var retangulo = constelacao.enquadrada();
-		context.clearRect(retangulo.x,retangulo.y,retangulo.width,retangulo.height);
-	
 		mouseX = mX - elem.offsetLeft;
 		mouseY = mY - elem.offsetTop;
+
+    var retangulo = constelacao.enquadrada();
+		context.clearRect(retangulo.x,retangulo.y,retangulo.width,retangulo.height);
+
     constelacao.atualizar(mouseX,mouseY);
     var pintor = new PintorDeConstelacao(constelacao);
     pintor.pintarEm(context);
 
-    if (this.estaDentro(mX,mY) && textoInformativoNaTela){
-      apagarTextoInformativo();
-      textoInformativoNaTela = false;
-    }
+    var estavaVisivel = texto.visivel();
+    texto.visivel(!this.estaDentro(mX,mY));
 
-    if (!this.estaDentro(mX,mY) && !textoInformativoNaTela){
-      desenharTextoInformativo();
-      textoInformativoNaTela = true;
+    if(estavaVisivel !== texto.visivel()) {
+      var pintor = new PintorDeTextoInformativo(texto);
+      pintor.pintarEm(context);
+      if(estavaVisivel) context.clearRect(0,0,elem.width,elem.height);
     }
 	}
 
