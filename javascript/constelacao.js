@@ -38,6 +38,7 @@ function Constelacao(raio){
 		}
 
     if(mudandoDeCor){
+      var frame = gameLoop.frame();
       if (!frameInicial) frameInicial = frame;
       var i = (frame - frameInicial)+1;
       var estrela = estrelas[i];
