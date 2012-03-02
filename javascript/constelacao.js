@@ -71,6 +71,34 @@ function Constelacao(raio){
 		return cor;
 	}
 
+  this.enquadrada = function() {
+    var estrela = estrelas[0];
+    if (!estrela) return {x:0,y:0,width:0,height:0};
+    var retangulo = estrela.enquadrada();
+    var xMin = retangulo.x;
+    var yMin = retangulo.y;
+    var xMax = retangulo.x+retangulo.width;
+    var yMax = retangulo.y+retangulo.height;
+
+    for (var i=1;i<estrelas.length;i++){
+      retangulo = estrelas[i].enquadrada();
+      if (xMax<retangulo.x+retangulo.width)
+        xMax = retangulo.x+retangulo.width;
+      if (yMax<retangulo.y+retangulo.height)
+        yMax = retangulo.y+retangulo.height;
+      if (xMin>retangulo.x)
+        xMin = retangulo.x;
+      if (yMin>retangulo.y)
+        yMin = retangulo.y;
+    }
+    return {
+      x: xMin,
+      y: yMin,
+      width: xMax - xMin,
+      height: yMax - yMin
+    };
+  };
+
   this.estrelas = function() {
     return estrelas;
   }

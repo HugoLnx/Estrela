@@ -1,11 +1,12 @@
 function Canvas(id){
-	var historicoCursor = [];
 	var constelacao = new Constelacao(30);
 	var elem = document.getElementById(id);
 	var mouseX = 0;
 	var mouseY = 0;
 	var context = elem.getContext('2d');
 	context.lineWidth = 4;
+  desenharTextoInformativo();
+  var textoInformativoNaTela=true;
 
   function desenharTextoInformativo(){
 		context.beginPath();context.closePath();
@@ -19,18 +20,30 @@ function Canvas(id){
     context.fill();
     context.restore();
   }
-  desenharTextoInformativo();
+
+  function apagarTextoInformativo() {
+    context.clearRect(0,0,elem.width,elem.height);
+  };
 
 	this.atualizar = function(mX,mY){
-		context.clearRect(0,0,elem.width,elem.height);
+    var retangulo = constelacao.enquadrada();
+		context.clearRect(retangulo.x,retangulo.y,retangulo.width,retangulo.height);
 	
 		mouseX = mX - elem.offsetLeft;
 		mouseY = mY - elem.offsetTop;
     constelacao.atualizar(mouseX,mouseY);
     var pintor = new PintorDeConstelacao(constelacao);
     pintor.pintarEm(context);
-    if (!this.estaDentro(mX,mY))
+
+    if (this.estaDentro(mX,mY) && textoInformativoNaTela){
+      apagarTextoInformativo();
+      textoInformativoNaTela = false;
+    }
+
+    if (!this.estaDentro(mX,mY) && !textoInformativoNaTela){
       desenharTextoInformativo();
+      textoInformativoNaTela = true;
+    }
 	}
 
   this.estaDentro = function(x,y) {

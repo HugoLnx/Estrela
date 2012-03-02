@@ -26,6 +26,15 @@ function Estrela(r,x_inicial,y_inicial,cor){
 	this.copiarCor = function(estrela){
 		cor = estrela.cor();
 	}
+
+  this.enquadrada = function() {
+    return {
+      x: x-raio,
+      y: y-raio,
+      width:raio*2,
+      height:raio*2
+    };
+  };
 	
 	this.setPosicao = function(novoX,novoY){
 		x = novoX;

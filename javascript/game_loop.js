@@ -3,7 +3,7 @@ function GameLoop(updateGame) {
   var FPS = 20;
   var finished = true;
 
-	window.setTimeout(loop,fps);
+	window.setTimeout(loop,FPS);
 
   function loop() {
     setTimeout(loop,FPS);
